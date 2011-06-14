@@ -47,15 +47,26 @@
 ;; Whitespace
 (require 'whitespace)
 
+
+
+;; TABS
+(setq EmacsPortable-global-tabbar 't)
+(setq EmacsPortable-global-ruler 't) 
+;; (setq EmacsPortable-popup-menu 't) ; If you want a popup menu.
+;; (setq EmacsPortable-popup-toolbar 't) ; If you want a popup toolbar
+
+(require 'tabbar-ruler)
+
 ;; KEYS
 ;; ctrl+g works but need to rebing it before
-;;(global-set-key "\C-g" 'goto-line)
+(global-set-key "\C-j" 'goto-line)
 (global-set-key "\C-s" 'save-buffer)
 
 ;; Below doesn't work
-;;(global-set-key "\C-2" 'comment-region)
-;;(global-set-key "\C-3" 'uncomment-region)
+;;(global-set-key "\C-c\C-c" 'comment-region)
+;;(global-set-key "\C-c\C-v" 'uncomment-region)
 
+(global-set-key "\C-f" 'search-forward)
 (global-set-key "\C-h" 'replace-string)
 
 (global-set-key "\C-cis" 'switch-indent-spaces)
