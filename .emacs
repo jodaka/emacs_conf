@@ -46,8 +46,10 @@
 ;; COLOR THEME (so it looks a little bit less ugly then default)
 (require 'color-theme)
 (color-theme-initialize)
-(load-file "~/.emacs.d/themes/color-theme-blackboard.el")
-(color-theme-blackboard)
+(load-file "~/emacs/themes/color-theme-blackboard.el")
+(load-file "~/emacs/themes/zenburn.el")
+;;(color-theme-blackboard)
+(color-theme-zenburn)
 
 ;; autoloading JS2 mode
 (autoload 'js2-mode "js2" nil t)
