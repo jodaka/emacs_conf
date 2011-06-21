@@ -62,10 +62,8 @@
 
 ;; Whitespace
 ;;(require 'whitespace)
-
 ;; I hate tabs!
 (setq-default indent-tabs-mode nil) 
-
 
 ;; TABS
 (setq EmacsPortable-global-tabbar 't)
@@ -169,3 +167,13 @@
 default-directory ".emacs")))
       (byte-compile-file (buffer-file-name))))
 (add-hook 'after-save-hook 'autocompile)
+
+
+;; JShint with Node server. yeah
+(add-to-list 'load-path "emacs/jshint")
+(require 'flymake-jshint)
+(add-hook 'javascript-mode-hook
+     (lambda () (flymake-mode t)))
+
+;; Turns on flymake for all files which have a flymake mode
+;;(add-hook 'find-file-hook 'flymake-find-file-hook)
