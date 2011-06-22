@@ -60,19 +60,29 @@
 (setq linum-format "%d ")
 (global-linum-mode 1)
 
-;; Whitespace
-;;(require 'whitespace)
-;; I hate tabs!
+;; using whitespace instead of tabs
 (setq-default indent-tabs-mode nil) 
+;; I hate tabs!
+;;(require 'whitespace)
+
+;;autoreload files when they changed on disk
+
+
+;;Sessions 
+(desktop-save-mode t)
+(setq-default desktop-path '("~/emacs/desktop/"))
+(setq history-length 250)
+(add-to-list 'desktop-globals-to-save 'file-name-history)
+(setq-default desktop-save t)
+(setq-default save-place t)
+(setq-default desktop-missing-file-warning nil)
 
 ;; TABS
 (setq EmacsPortable-global-tabbar 't)
 (setq EmacsPortable-global-ruler 't) 
 ;; (setq EmacsPortable-popup-menu 't) ; If you want a popup menu.
 ;; (setq EmacsPortable-popup-toolbar 't) ; If you want a popup toolbar
-
 (require 'tabbar-ruler)
-
 
 ;; KEYS
 ;; ctrl+g works but need to rebing it before
@@ -127,7 +137,7 @@
 (global-set-key [(ctrl down)] 'scroll-up-one-line)
 
 ;; use global copy/paste buffer
-;;(global-set-key "\C-x" 'clipboard-kill-region)
+;;x(global-set-key [(ctrl x)] 'clipboard-kill-region)
 ;;(global-set-key "\C-c" 'clipboard-kill-ring-save)
 ;;(global-set-key "\C-v" 'clipboard-yank)
 

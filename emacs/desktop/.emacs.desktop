@@ -1,0 +1,40 @@
+;; -*- mode: emacs-lisp; coding: emacs-mule; -*-
+;; --------------------------------------------------------------------------
+;; Desktop File for Emacs
+;; --------------------------------------------------------------------------
+;; Created Wed Jun 22 11:43:36 2011
+;; Desktop file format version 206
+;; Emacs version 23.2.1
+
+;; Global section:
+(setq desktop-missing-file-warning nil)
+(setq tags-file-name nil)
+(setq tags-table-list nil)
+(setq search-ring '("rev"))
+(setq regexp-search-ring nil)
+(setq register-alist nil)
+(setq file-name-history '("/home/jodaka/.emacs" "/home/git/hypnomessenger/js/hypno_gui.js"))
+
+;; Buffer section -- buffers listed in same order as in buffer list:
+(desktop-create-buffer 206
+  "/home/git/hypnomessenger/js/hypno_gui.js"
+  "hypno_gui.js"
+  'js2-mode
+  '(linum-mode)
+  51
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/jodaka/.emacs"
+  ".emacs"
+  'emacs-lisp-mode
+  '(linum-mode)
+  2406
+  '(2371 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix)))
+
