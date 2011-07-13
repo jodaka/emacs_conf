@@ -14,13 +14,19 @@
   ;; If there is more than one, they won't work right.
  '(cua-mode t nil (cua-base))
  '(fringe-mode 0 nil (fringe))
+ '(js2-allow-keywords-as-property-names nil)
  '(js2-auto-indent-p t)
+ '(js2-bounce-indent-p t)
  '(js2-cleanup-whitespace t)
+ '(js2-enter-indents-newline t)
  '(js2-highlight-level 2)
  '(js2-include-gears-externs nil)
  '(js2-include-rhino-externs nil)
+ '(js2-indent-on-enter-key nil)
+ '(js2-mode-escape-quotes nil)
  '(scroll-bar-mode (quote right))
- '(show-paren-mode t))
+ '(show-paren-mode t)
+ '(x-select-enable-clipboard t))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
@@ -79,7 +85,7 @@
 
 ;; TABS
 (setq EmacsPortable-global-tabbar 't)
-(setq EmacsPortable-global-ruler 't) 
+;; (setq EmacsPortable-global-ruler 't) 
 ;; (setq EmacsPortable-popup-menu 't) ; If you want a popup menu.
 ;; (setq EmacsPortable-popup-toolbar 't) ; If you want a popup toolbar
 (require 'tabbar-ruler)
@@ -97,8 +103,8 @@
 (global-set-key "\C-w" 'kill-current-buffer)
 
 ;; Below doesn't work
-;;(global-set-key "\C-c\C-c" 'comment-region)
-;;(global-set-key "\C-c\C-v" 'uncomment-region)
+(define-key global-map (kbd "C-1") 'comment-region)
+(define-key global-map (kbd "C-2") 'uncomment-region)
 
 ;;(global-set-key "\C-f" 'search-forward)
 ;;(global-set-key "\C-h" 'replace-string)
@@ -141,7 +147,7 @@
 ;;(global-set-key "\C-c" 'clipboard-kill-ring-save)
 ;;(global-set-key "\C-v" 'clipboard-yank)
 
-(custom-set-variables '(x-select-enable-clipboard t))
+
 
 ;; don't display scratch buffer
 (setq initial-scratch-message nil)
@@ -187,3 +193,24 @@ default-directory ".emacs")))
 
 ;; Turns on flymake for all files which have a flymake mode
 ;;(add-hook 'find-file-hook 'flymake-find-file-hook)
+
+
+;; open file with GTK dialog
+(defun my-find-file ()
+  (interactive)
+  (let (last-nonmenu-event)
+    (call-interactively 'find-file)))
+ (global-set-key (kbd "C-o") 'my-find-file)
+
+;; tramp (ftp/ssh)
+(add-to-list 'load-path "~/emacs/tramp/lisp/")
+;; for Emacs
+(add-to-list 'Info-default-directory-list "~/emacs/tramp/info/")
+
+
+(require 'tramp)
+;;(setq tramp-default-method "scp")
+;;  (setq tramp-default-method "ssh")
+
+(setq tramp-default-user "jodaka"
+      tramp-default-host "ololo")
