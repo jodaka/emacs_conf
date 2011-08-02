@@ -15,8 +15,8 @@
  '(cua-mode t nil (cua-base))
  '(fringe-mode 0 nil (fringe))
  '(js2-allow-keywords-as-property-names nil)
- '(js2-auto-indent-p t)
- '(js2-bounce-indent-p t)
+ '(js2-auto-indent-p nil)
+ '(js2-bounce-indent-p nil)
  '(js2-cleanup-whitespace t)
  '(js2-enter-indents-newline t)
  '(js2-highlight-level 2)
@@ -67,14 +67,14 @@
 (global-linum-mode 1)
 
 ;; using whitespace instead of tabs
-(setq-default indent-tabs-mode nil) 
+(setq-default indent-tabs-mode nil)
 ;; I hate tabs!
 ;;(require 'whitespace)
 
 ;;autoreload files when they changed on disk
 
 
-;;Sessions 
+;;Sessions
 (desktop-save-mode t)
 (setq-default desktop-path '("~/emacs/desktop/"))
 (setq history-length 250)
@@ -85,7 +85,7 @@
 
 ;; TABS
 (setq EmacsPortable-global-tabbar 't)
-;; (setq EmacsPortable-global-ruler 't) 
+;; (setq EmacsPortable-global-ruler 't)
 ;; (setq EmacsPortable-popup-menu 't) ; If you want a popup menu.
 ;; (setq EmacsPortable-popup-toolbar 't) ; If you want a popup toolbar
 (require 'tabbar-ruler)
@@ -165,7 +165,7 @@
 (global-set-key [(control o)]          'menu-find-file-existing)
 
 
-;; bookmarks 
+;; bookmarks
 (require 'breadcrumb)
 (global-set-key [(control f2)]          'bc-set)
 (global-set-key [(f2)]                  'bc-next)
@@ -216,7 +216,7 @@ default-directory ".emacs")))
       tramp-default-host "ololo")
 
 
-;; TODO 
+;; TODO
 (require 'fic-mode)
 (defun add-something-to-mode-hooks (mode-list something)
   "helper function to add a callback to multiple hooks"
@@ -224,3 +224,22 @@ default-directory ".emacs")))
     (add-hook (intern (concat (symbol-name mode) "-mode-hook")) something)))
 
 (add-something-to-mode-hooks '(c++ javascript js2 emacs-lisp) 'turn-on-fic-mode)
+
+
+;; delete trailing whitespaces on save
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; Now you are approaching the pure awesomeness
+;; DELETEs all whitespaces from current word till next non-whitespace char (including \n)
+(defun whack-whitespace (arg)
+  "Delete all white space from point to the next word.  With prefix ARG
+    delete across newlines as well.  The only danger in this is that you
+    don't have to actually be at the end of a word to make it work.  It
+    skips over to the next whitespace and then whacks it all to the next
+    word."
+  (interactive "P")
+  (let ((regexp (if arg "[ \t\n]+" "[ \t]+")))
+    (re-search-forward regexp nil t)
+    (replace-match "" nil nil)))
+
+(global-set-key [C-delete] 'kill-whitespace)
