@@ -185,16 +185,6 @@ default-directory ".emacs")))
 (add-hook 'after-save-hook 'autocompile)
 
 
-;; JShint with Node server. yeah
-(add-to-list 'load-path "emacs/jshint")
-(require 'flymake-jshint)
-(add-hook 'javascript-mode-hook
-     (lambda () (flymake-mode t)))
-
-;; Turns on flymake for all files which have a flymake mode
-;;(add-hook 'find-file-hook 'flymake-find-file-hook)
-
-
 ;; open file with GTK dialog
 (defun my-find-file ()
   (interactive)
@@ -215,7 +205,6 @@ default-directory ".emacs")))
 (setq tramp-default-user "jodaka"
       tramp-default-host "ololo")
 
-
 ;; TODO
 (require 'fic-mode)
 (defun add-something-to-mode-hooks (mode-list something)
@@ -225,11 +214,20 @@ default-directory ".emacs")))
 
 (add-something-to-mode-hooks '(c++ javascript js2 emacs-lisp) 'turn-on-fic-mode)
 
-
 ;; delete trailing whitespaces on save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; Now you are approaching the pure awesomeness
 ;; DELETEs all whitespaces from current word till next non-whitespace char (including \n)
+(load "cc-mode")
 (global-set-key [C-delete] 'c-hungry-delete-forward)
+(global-set-key [C-backspace] 'c-hungry-delete-backwards)
 
+;; JShint with Node server. yeah
+(add-to-list 'load-path "emacs/jshint")
+(require 'flymake-jshint)
+(add-hook 'javascript-mode-hook
+    (lambda () (flymake-mode t)))
+
+;; Turns on flymake for all files which have a flymake mode
+;;(add-hook 'find-file-hook 'flymake-find-file-hook)
