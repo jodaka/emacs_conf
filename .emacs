@@ -24,6 +24,8 @@
  '(js2-include-rhino-externs nil)
  '(js2-indent-on-enter-key nil)
  '(js2-mode-escape-quotes nil)
+ '(nxml-child-indent 4)
+ '(nxml-outline-child-indent 4)
  '(scroll-bar-mode (quote right))
  '(show-paren-mode t)
  '(x-select-enable-clipboard t))
@@ -33,7 +35,8 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "#0C1021" :foreground "#F8F8F8" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "microsoft" :family "Consolas"))))
- '(linum ((t (:inherit (shadow default) :background "#4B4B4B" :foreground "#FBF286")))))
+ '(linum ((t (:inherit (shadow default) :background "#4B4B4B" :foreground "#FBF286"))))
+ '(nxml-namespace-attribute-value-delimiter ((t (:foreground "#BF8AA6")))))
 
 
 ;; ============
@@ -69,7 +72,14 @@
 ;; using whitespace instead of tabs
 (setq-default indent-tabs-mode nil)
 ;; I hate tabs!
-;;(require 'whitespace)
+
+
+;; Turn off line-wrap
+(setq-default truncate-lines t)
+
+;; Turn on tab spaces display
+;; (require 'whitespace)
+ (setq-default whitespace-mode 0)
 
 ;;autoreload files when they changed on disk
 
@@ -85,9 +95,6 @@
 
 ;; TABS
 (setq EmacsPortable-global-tabbar 't)
-;; (setq EmacsPortable-global-ruler 't)
-;; (setq EmacsPortable-popup-menu 't) ; If you want a popup menu.
-;; (setq EmacsPortable-popup-toolbar 't) ; If you want a popup toolbar
 (require 'tabbar-ruler)
 
 ;; KEYS
@@ -231,3 +238,15 @@ default-directory ".emacs")))
 
 ;; Turns on flymake for all files which have a flymake mode
 ;;(add-hook 'find-file-hook 'flymake-find-file-hook)
+
+
+;; html/xml
+;; Alt+left / Alt+right jumps to open/close tag
+(add-hook 'html-mode-hook
+ (lambda ()
+ (define-key html-mode-map (kbd "C-[") 'sgml-skip-tag-backward)
+ (define-key html-mode-map (kbd "C-]") 'sgml-skip-tag-forward)
+ )
+)
+
+(require 'highlight-indentation)
