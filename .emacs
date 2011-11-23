@@ -167,6 +167,8 @@
   (tool-bar-mode (menu-bar-mode)))
 (global-set-key (kbd "<f10>")          'toggle-menu-toolbar-modes)
 
+;; find all occurencies of substring in current buffer (Ctrl+F)
+(global-set-key (kbd "C-f")                  'occur)
 
 ;; open file dialog
 (global-set-key [(control o)]          'menu-find-file-existing)
@@ -250,3 +252,4 @@ default-directory ".emacs")))
 )
 
 (require 'highlight-indentation)
+(add-hook 'js2-mode-hook (lambda () (highlight-indentation)))
